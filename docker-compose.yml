@@ -1,0 +1,29 @@
+version: '3'
+services:
+  server:
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - rabbitmq
+      - postgres
+    depends_on:
+      - rabbitmq
+      - postgres
+    environment:
+      - DB_HOSTNAME=postgres
+      - RABBITMQ_HOSTNAME=rabbitmq
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: banking
