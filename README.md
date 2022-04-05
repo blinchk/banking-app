@@ -19,7 +19,7 @@ The tasks consist of implementing a small core banking solution:
 
 ### Build
 
-Solution can be easily build with Gradle, use `gradle build` or `./gradlew build` for it.
+Solution can be easily built with Gradle, use `gradle build` or `./gradlew build` for it.
 
 ### Run
 
