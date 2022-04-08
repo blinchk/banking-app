@@ -5,13 +5,13 @@ import ee.laus.banking.exception.InvalidCurrencyException;
 import ee.laus.banking.exception.InvalidReferenceException;
 import ee.laus.banking.exception.MissingDataException;
 import ee.laus.banking.exception.account.AccountNotFoundException;
+import ee.laus.banking.message.AccountQueue;
 import ee.laus.banking.model.Account;
 import ee.laus.banking.model.Balance;
 import ee.laus.banking.model.Currency;
 import ee.laus.banking.model.Customer;
 import ee.laus.banking.repository.AccountRepository;
 import ee.laus.banking.repository.CustomerRepository;
-import ee.laus.banking.message.AccountQueue;
 import ee.laus.banking.response.AccountResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,21 +29,26 @@ public class AccountService {
     private final AccountQueue accountQueue;
 
     public AccountResultResponse create(AccountCreateDto dto) {
-        if (dto.getCurrencies().isEmpty()) {
+        if (dto.getCurrencies()
+               .isEmpty()) {
             throw new InvalidCurrencyException();
         }
 
 
         Customer customer;
         if (Objects.nonNull(dto.getCustomerId())) {
-            customer = customerRepository.findById(dto.getCustomerId()).orElseThrow(InvalidReferenceException::new);
+            customer = customerRepository.findById(dto.getCustomerId())
+                                         .orElseThrow(InvalidReferenceException::new);
         } else {
             throw new MissingDataException();
         }
 
         List<Balance> balances;
         try {
-            balances = dto.getCurrencies().stream().map(currency -> new Balance(Currency.valueOf(currency))).toList();
+            balances = dto.getCurrencies()
+                          .stream()
+                          .map(currency -> new Balance(Currency.valueOf(currency)))
+                          .toList();
         } catch (IllegalArgumentException e) {
             throw new InvalidCurrencyException();
         }
@@ -58,6 +63,7 @@ public class AccountService {
     }
 
     public AccountResultResponse get(Long id) {
-        return AccountResultResponse.of(accountRepository.findById(id).orElseThrow(AccountNotFoundException::new));
+        return AccountResultResponse.of(accountRepository.findById(id)
+                                                         .orElseThrow(AccountNotFoundException::new));
     }
 }

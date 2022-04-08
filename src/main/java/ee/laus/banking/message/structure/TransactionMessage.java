@@ -16,7 +16,8 @@ public class TransactionMessage implements Serializable {
     private final String description;
 
     public static TransactionMessage of(Transaction transaction) {
-        return new TransactionMessage(transaction.getAccount().getId(),
+        return new TransactionMessage(transaction.getAccount()
+                                                 .getId(),
                 transaction.getAmount(),
                 transaction.getCurrency(),
                 transaction.getDirection(),

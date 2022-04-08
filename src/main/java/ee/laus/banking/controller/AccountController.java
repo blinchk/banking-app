@@ -1,8 +1,8 @@
 package ee.laus.banking.controller;
 
 import ee.laus.banking.dto.AccountCreateDto;
-import ee.laus.banking.service.AccountService;
 import ee.laus.banking.response.AccountResultResponse;
+import ee.laus.banking.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

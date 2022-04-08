@@ -1,20 +1,16 @@
 package ee.laus.banking.service;
 
+import ee.laus.banking.dto.TransactionCreateDto;
 import ee.laus.banking.exception.MissingDataException;
 import ee.laus.banking.exception.account.AccountNotFoundException;
 import ee.laus.banking.exception.transaction.InvalidAmountException;
-import ee.laus.banking.dto.TransactionCreateDto;
-import ee.laus.banking.model.Account;
-import ee.laus.banking.model.Balance;
-import ee.laus.banking.model.Currency;
-import ee.laus.banking.model.Transaction;
-import ee.laus.banking.model.TransactionDirection;
-import ee.laus.banking.repository.AccountRepository;
 import ee.laus.banking.message.TransactionQueue;
+import ee.laus.banking.model.*;
+import ee.laus.banking.repository.AccountRepository;
+import ee.laus.banking.repository.TransactionRepository;
 import ee.laus.banking.response.BalanceResponse;
 import ee.laus.banking.response.TransactionListResponse;
 import ee.laus.banking.response.TransactionResultResponse;
-import ee.laus.banking.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +25,8 @@ public class TransactionService {
     private final TransactionQueue transactionQueue;
 
     public TransactionListResponse allByAccountId(Long accountId) {
-        Account account = accountRepository.findById(accountId).orElseThrow(AccountNotFoundException::new);
+        Account account = accountRepository.findById(accountId)
+                                           .orElseThrow(AccountNotFoundException::new);
         return TransactionListResponse.of(transactionRepository.findAllByAccount(account));
     }
 
@@ -51,7 +48,7 @@ public class TransactionService {
         final TransactionDirection direction = dto.getDirection();
         final Currency currency = dto.getCurrency();
         final Account account = accountRepository.findById(dto.getAccountId())
-                .orElseThrow(AccountNotFoundException::new);
+                                                 .orElseThrow(AccountNotFoundException::new);
         final Balance balance = direction == TransactionDirection.OUT ? balanceService.validateSufficientFunds(account,
                 amount,
                 currency) : balanceService.findByAccountAndCurrency(account, currency);
@@ -60,7 +57,8 @@ public class TransactionService {
         Transaction transaction = new Transaction(account, amount, currency, direction, description);
         transaction = save(transaction);
 
-        return new TransactionResultResponse(transaction.getAccount().getId(),
+        return new TransactionResultResponse(transaction.getAccount()
+                                                        .getId(),
                 transaction.getId(),
                 transaction.getAmount(),
                 transaction.getCurrency(),

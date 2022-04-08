@@ -11,6 +11,8 @@ public class TransactionListResponse implements Serializable {
     private final List<TransactionListResponseItem> transactions;
 
     public static TransactionListResponse of(List<Transaction> transactions) {
-        return new TransactionListResponse(transactions.stream().map(TransactionListResponseItem::of).toList());
+        return new TransactionListResponse(transactions.stream()
+                                                       .map(TransactionListResponseItem::of)
+                                                       .toList());
     }
 }

@@ -17,7 +17,8 @@ public class TransactionListResponseItem implements Serializable {
     private final String description;
 
     public static TransactionListResponseItem of(Transaction transaction) {
-        return new TransactionListResponseItem(transaction.getAccount().getId(),
+        return new TransactionListResponseItem(transaction.getAccount()
+                                                          .getId(),
                 transaction.getId(),
                 transaction.getAmount(),
                 transaction.getCurrency(),

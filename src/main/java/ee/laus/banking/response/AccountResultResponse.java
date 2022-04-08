@@ -15,7 +15,11 @@ public class AccountResultResponse implements Serializable {
 
     public static AccountResultResponse of(Account account) {
         return new AccountResultResponse(account.getId(),
-                account.getCustomer().getId(),
-                account.getBalances().stream().map(BalanceResponse::of).collect(Collectors.toList()));
+                account.getCustomer()
+                       .getId(),
+                account.getBalances()
+                       .stream()
+                       .map(BalanceResponse::of)
+                       .collect(Collectors.toList()));
     }
 }

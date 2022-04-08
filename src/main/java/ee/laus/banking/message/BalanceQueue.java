@@ -1,7 +1,7 @@
 package ee.laus.banking.message;
 
-import ee.laus.banking.model.Balance;
 import ee.laus.banking.message.structure.BalanceMessage;
+import ee.laus.banking.model.Balance;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

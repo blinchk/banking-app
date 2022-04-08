@@ -1,9 +1,9 @@
 package ee.laus.banking.controller;
 
 import ee.laus.banking.dto.TransactionCreateDto;
-import ee.laus.banking.service.TransactionService;
 import ee.laus.banking.response.TransactionListResponse;
 import ee.laus.banking.response.TransactionResultResponse;
+import ee.laus.banking.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

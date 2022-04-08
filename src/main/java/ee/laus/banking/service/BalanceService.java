@@ -3,11 +3,11 @@ package ee.laus.banking.service;
 import ee.laus.banking.exception.InvalidCurrencyException;
 import ee.laus.banking.exception.account.AccountNotFoundException;
 import ee.laus.banking.exception.transaction.InsufficientFundsException;
+import ee.laus.banking.message.BalanceQueue;
 import ee.laus.banking.model.Account;
 import ee.laus.banking.model.Balance;
 import ee.laus.banking.model.Currency;
 import ee.laus.banking.model.TransactionDirection;
-import ee.laus.banking.message.BalanceQueue;
 import ee.laus.banking.repository.BalanceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
@@ -53,7 +53,7 @@ public class BalanceService {
     public Balance findByAccountAndCurrency(Account account, Currency currency) {
         try {
             return balanceRepository.findFirstByAccountAndCurrency(account, currency)
-                    .orElseThrow(InvalidCurrencyException::new);
+                                    .orElseThrow(InvalidCurrencyException::new);
         } catch (InvalidDataAccessApiUsageException e) {
             throw new AccountNotFoundException();
         }
@@ -63,7 +63,9 @@ public class BalanceService {
         if (Objects.isNull(account)) {
             throw new AccountNotFoundException();
         }
-        balances = balances.stream().peek(balance -> balance.setAccount(account)).toList();
+        balances = balances.stream()
+                           .peek(balance -> balance.setAccount(account))
+                           .toList();
         try {
             balances = balanceRepository.saveAll(balances);
             balances.forEach(balanceSaveQueue::publish);

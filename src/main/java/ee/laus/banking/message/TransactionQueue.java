@@ -1,7 +1,7 @@
 package ee.laus.banking.message;
 
-import ee.laus.banking.model.Transaction;
 import ee.laus.banking.message.structure.TransactionMessage;
+import ee.laus.banking.model.Transaction;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

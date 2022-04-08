@@ -23,14 +23,15 @@ public class TransactionResultResponse implements Serializable {
 
     public static TransactionResultResponse of(Transaction transaction) {
         final Balance balance = transaction.getAccount()
-                .getBalances()
-                .stream()
-                .filter(b -> b.getCurrency() == transaction.getCurrency())
-                .findFirst()
-                .orElseThrow(InvalidCurrencyException::new);
+                                           .getBalances()
+                                           .stream()
+                                           .filter(b -> b.getCurrency() == transaction.getCurrency())
+                                           .findFirst()
+                                           .orElseThrow(InvalidCurrencyException::new);
         balance.setAvailableAmount(balance.getAvailableAmount() - transaction.getAmount());
 
-        return new TransactionResultResponse(transaction.getAccount().getId(),
+        return new TransactionResultResponse(transaction.getAccount()
+                                                        .getId(),
                 transaction.getId(),
                 transaction.getAmount(),
                 transaction.getCurrency(),

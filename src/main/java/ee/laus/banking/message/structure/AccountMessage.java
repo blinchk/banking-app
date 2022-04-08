@@ -12,6 +12,9 @@ public class AccountMessage implements Serializable {
     private final String country;
 
     public static AccountMessage of(Account account) {
-        return new AccountMessage(account.getId(), account.getCustomer().getId(), account.getCountry());
+        return new AccountMessage(account.getId(),
+                account.getCustomer()
+                       .getId(),
+                account.getCountry());
     }
 }
