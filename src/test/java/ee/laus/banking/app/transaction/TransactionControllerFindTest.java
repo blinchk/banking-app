@@ -1,13 +1,14 @@
 package ee.laus.banking.app.transaction;
 
-import ee.laus.banking.app.exception.account.AccountNotFoundException;
-import ee.laus.banking.domain.account.Account;
-import ee.laus.banking.domain.account.Currency;
-import ee.laus.banking.domain.transaction.Transaction;
-import ee.laus.banking.infrastructure.account.AccountRepository;
-import ee.laus.banking.infrastructure.transaction.TransactionRepository;
-import ee.laus.banking.presentation.transaction.TransactionListResponse;
-import ee.laus.banking.presentation.transaction.TransactionListResponseItem;
+import ee.laus.banking.controller.TransactionController;
+import ee.laus.banking.exception.account.AccountNotFoundException;
+import ee.laus.banking.model.Account;
+import ee.laus.banking.model.Currency;
+import ee.laus.banking.model.Transaction;
+import ee.laus.banking.repository.AccountRepository;
+import ee.laus.banking.repository.TransactionRepository;
+import ee.laus.banking.response.TransactionListResponse;
+import ee.laus.banking.response.TransactionListResponseItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

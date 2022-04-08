@@ -1,13 +1,14 @@
 package ee.laus.banking.app.transaction;
 
-import ee.laus.banking.app.transaction.dto.TransactionCreateDto;
-import ee.laus.banking.domain.account.Account;
-import ee.laus.banking.domain.account.Balance;
-import ee.laus.banking.domain.account.Currency;
-import ee.laus.banking.domain.transaction.TransactionDirection;
-import ee.laus.banking.infrastructure.account.AccountRepository;
-import ee.laus.banking.infrastructure.account.balance.BalanceRepository;
-import ee.laus.banking.presentation.transaction.TransactionResultResponse;
+import ee.laus.banking.controller.TransactionController;
+import ee.laus.banking.dto.TransactionCreateDto;
+import ee.laus.banking.model.Account;
+import ee.laus.banking.model.Balance;
+import ee.laus.banking.model.Currency;
+import ee.laus.banking.model.TransactionDirection;
+import ee.laus.banking.repository.AccountRepository;
+import ee.laus.banking.repository.BalanceRepository;
+import ee.laus.banking.response.TransactionResultResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

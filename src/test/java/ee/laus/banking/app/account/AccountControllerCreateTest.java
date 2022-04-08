@@ -1,15 +1,16 @@
 package ee.laus.banking.app.account;
 
-import ee.laus.banking.app.account.dto.AccountCreateDto;
-import ee.laus.banking.app.exception.InvalidCurrencyException;
-import ee.laus.banking.app.exception.InvalidReferenceException;
-import ee.laus.banking.app.exception.MissingDataException;
-import ee.laus.banking.domain.account.Currency;
-import ee.laus.banking.domain.account.Customer;
-import ee.laus.banking.infrastructure.account.AccountService;
-import ee.laus.banking.infrastructure.account.customer.CustomerRepository;
-import ee.laus.banking.presentation.account.AccountResultResponse;
-import ee.laus.banking.presentation.balance.BalanceResponse;
+import ee.laus.banking.dto.AccountCreateDto;
+import ee.laus.banking.exception.InvalidCurrencyException;
+import ee.laus.banking.exception.InvalidReferenceException;
+import ee.laus.banking.exception.MissingDataException;
+import ee.laus.banking.controller.AccountController;
+import ee.laus.banking.model.Currency;
+import ee.laus.banking.model.Customer;
+import ee.laus.banking.service.AccountService;
+import ee.laus.banking.repository.CustomerRepository;
+import ee.laus.banking.response.AccountResultResponse;
+import ee.laus.banking.response.BalanceResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

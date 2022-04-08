@@ -1,11 +1,12 @@
 package ee.laus.banking.app.account;
 
-import ee.laus.banking.app.account.dto.AccountCreateDto;
-import ee.laus.banking.app.exception.account.AccountNotFoundException;
-import ee.laus.banking.domain.account.Customer;
-import ee.laus.banking.infrastructure.account.AccountService;
-import ee.laus.banking.infrastructure.account.customer.CustomerRepository;
-import ee.laus.banking.presentation.account.AccountResultResponse;
+import ee.laus.banking.dto.AccountCreateDto;
+import ee.laus.banking.exception.account.AccountNotFoundException;
+import ee.laus.banking.controller.AccountController;
+import ee.laus.banking.model.Customer;
+import ee.laus.banking.service.AccountService;
+import ee.laus.banking.repository.CustomerRepository;
+import ee.laus.banking.response.AccountResultResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

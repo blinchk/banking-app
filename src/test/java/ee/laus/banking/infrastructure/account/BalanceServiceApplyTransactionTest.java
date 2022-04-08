@@ -1,9 +1,9 @@
 package ee.laus.banking.infrastructure.account;
 
-import ee.laus.banking.domain.account.Balance;
-import ee.laus.banking.domain.account.Currency;
-import ee.laus.banking.domain.transaction.TransactionDirection;
-import ee.laus.banking.infrastructure.account.balance.BalanceService;
+import ee.laus.banking.model.Balance;
+import ee.laus.banking.model.Currency;
+import ee.laus.banking.model.TransactionDirection;
+import ee.laus.banking.service.BalanceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
